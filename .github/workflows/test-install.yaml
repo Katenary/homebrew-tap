@@ -42,7 +42,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        os: ["macos-latest", "macos-13"]
+        os: ["macos-latest"]
     runs-on: ${{matrix.os}}
     steps:
       - name: Install dependencies
