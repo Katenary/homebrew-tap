@@ -17,8 +17,7 @@ jobs:
     name: Test on Linux
     strategy:
       matrix:
-        arch: ["amd64", "arm64"]
-        os: ["ubuntu-latest"]
+        os: ["ubuntu-latest", "ubuntu-24.04-arm"]
     runs-on: ${{matrix.os}}
     steps:
       - name: Install dependencies
@@ -40,7 +39,11 @@ jobs:
 
   tests-macos:
     name: Test on macOS
-    runs-on: macos-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        os: ["macos-latest", "macos-13"]
+    runs-on: ${matrix.os}
     steps:
       - name: Install dependencies
         run: brew update
