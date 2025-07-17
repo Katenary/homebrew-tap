@@ -2,8 +2,15 @@
 
 This repository contains the HomeBrew formula for [Katenary](https://katenary.org).
 
-It proposes automatic installation for:
+Linux / Mac:
+
+```bash
+brew isntall katenary/tap/katenary
+```
+
+# Supported Platforms
 
 - Linux amd64
 - Linux arm64
-- OSX intel
+- OSX amd64
+- OSX arm64
