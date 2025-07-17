@@ -33,20 +33,20 @@ class Katenary < Formula
   end
 
   on_macos do
-    if Hardware::CPU.intel?
-      url "https://github.com/Katenary/katenary/releases/download/#{version}/katenary-darwin-amd64"
-      sha256 'df7da7b9e74e86d5dadeed77a8a921aaa29e4fcc8edffdb2b72920672c56fbd4'
-      def install
-        bin.install 'katenary-darwin-amd64' => 'katenary'
-      end
+    if Hardware::CPU.intel? and Hardware::CPU.is_64_bit?
+        url "https://github.com/Katenary/katenary/releases/download/#{version}/katenary-darwin-amd64"
+        sha256 'df7da7b9e74e86d5dadeed77a8a921aaa29e4fcc8edffdb2b72920672c56fbd4'
+        def install
+            bin.install 'katenary-darwin-amd64' => 'katenary'
+        end
     end
 
-    if Hardware::CPU.arm?
-      url "https://github.com/Katenary/katenary/releases/download/#{version}/katenary-darwin-arm64"
-      sha256 '018232cd63855d344f3907bcaa5ec8ec586817e315e935221d174ce171782d9f'
-      def install
-        bin.install 'katenary-darwin-arm64' => 'katenary'
-      end
+    if Hardware::CPU.arm? and Hardware::CPU.is_64_bit?
+        url "https://github.com/Katenary/katenary/releases/download/#{version}/katenary-darwin-arm64"
+        sha256 '018232cd63855d344f3907bcaa5ec8ec586817e315e935221d174ce171782d9f'
+        def install
+            bin.install 'katenary-darwin-arm64' => 'katenary'
+        end
     end
   end
 

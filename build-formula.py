@@ -11,7 +11,7 @@ PREAMBLE = """
 """
 
 LINUX_INSTALL = """
-    if Hardware::CPU.{arch}?
+    if Hardware::CPU.{arch}? and Hardware::CPU.is_64_bit?
       url "{source}"
       sha256 '{sha256}'
       def install
@@ -23,7 +23,7 @@ LINUX_INSTALL = """
 """
 
 OSX_INSTALL = """
-    if Hardware::CPU.intel?
+    if Hardware::CPU.{arch}? and Hardware::CPU.is_64_bit?
         url "{source}"
         sha256 '{sha256}'
         def install
@@ -122,6 +122,7 @@ def build_linux_install(release: Release) -> str:
         arch="arm",
     )
 
+    # osx amd64 dosen't work.
     osx_amd64 = OSX_INSTALL.format(
         source=release.osx_amd64.source.replace(release.version, "#{version}"),
         sha256=release.osx_amd64.sha256,
@@ -137,7 +138,9 @@ def build_linux_install(release: Release) -> str:
     )
 
     linux_body = "\n\n".join([linux_amd64.strip("\n"), linux_arm64.strip("\n")])
+    # osx amd64 dosen't work.
     darwin_body = "\n\n".join([osx_amd64.strip("\n"), osx_arm64.strip("\n")])
+    # darwin_body = osx_arm64.strip("\n")
 
     preamble = PREAMBLE.format(
         SOURCE_URL=release.url.replace(release.version, "#{version}"),

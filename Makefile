@@ -7,6 +7,6 @@ SHELL=/bin/bash
 
 all: Formula/katenary.rb
 
-Formula/katenary.rb:
+Formula/katenary.rb: build-formula.py
 	python build-formula.py > $@
 
