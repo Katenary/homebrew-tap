@@ -11,7 +11,7 @@ class Katenary < Formula
   sha256 'a616c2e4a5e28d305c18cab8004b285d9579a9b93e10f51cf79a2ca9da3c91aa'
 
   on_linux do
-    if Hardware::CPU.intel?
+    if Hardware::CPU.intel? and Hardware::CPU.is_64_bit?
       url "https://github.com/Katenary/katenary/releases/download/#{version}/katenary-linux-#{version}.amd64.tar"
       sha256 'bfb0208dbe8880305382a9a62c73027d667858d5e2a9c9f7a146d6047d561640'
       def install
@@ -21,7 +21,7 @@ class Katenary < Formula
       end
     end
 
-    if Hardware::CPU.arm?
+    if Hardware::CPU.arm? and Hardware::CPU.is_64_bit?
       url "https://github.com/Katenary/katenary/releases/download/#{version}/katenary-linux-#{version}.arm64.tar"
       sha256 '9eef16941439c7e992ba7c0ff8018d7ccd9de67c211a9d96be4cf14869368900'
       def install

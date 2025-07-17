@@ -14,11 +14,12 @@ on:
 
 jobs:
   tests-linux:
-    name: Test on Linux amd64
-    runs-on: ubuntu-latest
+    name: Test on Linux
     strategy:
       matrix:
         arch: ["amd64", "arm64"]
+        os: ["ubuntu-latest"]
+    runs-on: ${{matrix.os}}
     steps:
       - name: Install dependencies
         run: |
@@ -38,7 +39,7 @@ jobs:
         run: ~/.linuxbrew/bin/katenary --version && echo "Linux test OK"
 
   tests-macos:
-    name: Test on macOS arm64
+    name: Test on macOS
     runs-on: macos-latest
     steps:
       - name: Install dependencies
