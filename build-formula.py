@@ -4,7 +4,7 @@ from hashlib import sha256
 import requests
 
 PREAMBLE = """
-  desc 'Description de votre application Katenary'
+  desc 'Transfrom compose files from Docker/Podman to Helm charts'
   homepage 'https://github.com/katenary/katenary'
   url "{SOURCE_URL}"
   sha256 '{SOURCE_SHA}'

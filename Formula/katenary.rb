@@ -5,7 +5,7 @@
 class Katenary < Formula
   version '3.0.0-rc5'
 
-  desc 'Description de votre application Katenary'
+  desc 'Transfrom compose files from Docker/Podman to Helm charts'
   homepage 'https://github.com/katenary/katenary'
   url "https://github.com/Katenary/katenary/archive/refs/tags/#{version}.tar.gz"
   sha256 'a616c2e4a5e28d305c18cab8004b285d9579a9b93e10f51cf79a2ca9da3c91aa'
