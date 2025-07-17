@@ -72,6 +72,7 @@ class Release:
     linux_amd64: Info
     linux_arm64: Info
     osx_amd64: Info
+    osx_arm64: Info
 
 
 def get_latest_release(source="katenary/katenary") -> dict:
@@ -128,8 +129,15 @@ def build_linux_install(release: Release) -> str:
         arch="intel",
     )
 
+    osx_arm64 = OSX_INSTALL.format(
+        source=release.osx_arm64.source.replace(release.version, "#{version}"),
+        sha256=release.osx_arm64.sha256,
+        filename=release.osx_arm64.source.split("/")[-1],
+        arch="arm",
+    )
+
     linux_body = "\n\n".join([linux_amd64.strip("\n"), linux_arm64.strip("\n")])
-    darwin_body = osx_amd64.strip("\n")
+    darwin_body = "\n\n".join([osx_amd64.strip("\n"), osx_arm64.strip("\n")])
 
     preamble = PREAMBLE.format(
         SOURCE_URL=release.url.replace(release.version, "#{version}"),
@@ -158,6 +166,7 @@ def main(repo="Katenary/katenary"):
     linux_amd64 = get_info("linux", "amd64", release)
     linux_arm64 = get_info("linux", "arm64", release)
     osx_amd64 = get_info("darwin", "amd64", release)
+    osx_arm64 = get_info("darwin", "arm64", release)
     source_tarball = (
         f"https://github.com/{repo}/archive/refs/tags/"
         + release["tag_name"]
@@ -170,6 +179,7 @@ def main(repo="Katenary/katenary"):
         linux_amd64=linux_amd64,
         linux_arm64=linux_arm64,
         osx_amd64=osx_amd64,
+        osx_arm64=osx_arm64,
     )
     linux = build_linux_install(res)
     return linux

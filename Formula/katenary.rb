@@ -40,6 +40,14 @@ class Katenary < Formula
         bin.install 'katenary-darwin-amd64' => 'katenary'
       end
     end
+
+    if Hardware::CPU.arm?
+      url "https://github.com/Katenary/katenary/releases/download/#{version}/katenary-darwin-arm64"
+      sha256 '018232cd63855d344f3907bcaa5ec8ec586817e315e935221d174ce171782d9f'
+      def install
+        bin.install 'katenary-darwin-arm64' => 'katenary'
+      end
+    end
   end
 
   test do
